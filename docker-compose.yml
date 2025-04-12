@@ -14,11 +14,12 @@ services:
       - LETSENCRYPT_EMAIL=gabrielc.machado@hotmail.com
 
     networks:
-      - nginx-proxy
+      - scripts_nginx-net
 
     # ports:
     #   - "3000:3000" # Expondo a porta 3000 para o Nginx Proxy
 
 networks:
-  nginx-proxy:
+  scripts_nginx-net:
+    name: scripts_nginx-net
     external: true  # Conecta-se à rede do nginx-proxy já existente
