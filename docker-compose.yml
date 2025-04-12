@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  nextjs-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - VIRTUAL_HOST=teste2.hubstock.com.br  # Domínio onde a aplicação será acessada
+      - VIRTUAL_PORT=3000                   # Porta exposta no container do Next.js
+      - NGINX_PROXY_CONTAINER=nginx-proxy   # Nome do container que hospeda o nginx-proxy
+    networks:
+      - nginx-proxy
+
+    ports:
+      - "3000:3000" # Expondo a porta 3000 para o Nginx Proxy
+
+networks:
+  nginx-proxy:
+    external: true  # Conecta-se à rede do nginx-proxy já existente
